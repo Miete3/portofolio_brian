@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="m.css">
+  <title>Portfolio Meryl Brian</title>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <header>
+  <div class="logo">
+    <div class="mark">MBN</div> Meryl
+  </div>
+
+  <!-- Bouton menu hamburger (visible uniquement en mobile) -->
+  <button class="menu-toggle" aria-label="Menu" style="margin-left: -30px;">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav>
+    <a href="#about">À propos</a>
+    <a href="#projects">Projets</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+
+    <!-- Hero -->
+    <section class="hero sticky" aria-label="Présentation">
+      <div class="intro">
+        <h1> Bonjour, je suis <span style="color:var(--accent)">Meryl Brian Ngoyi</span>, développeur web, logiciel et jeune entrepreneur congolais </h1>
+        <p> Je suis le co-fondateur d’Amazon Afrique, le site de e-commerce le plus utilisé en Afrique, fondateur de l’association Les Enfants d’Afrique, fondateur de la compagnie JPO Airline, propriétaire de la plus grande companie agricole et d'élevage d'Afrique centrale JPO-agro, propriétaire de 3 grandes sociétés immobilières au Maroc, à Dubai et au Canada, ainsi que des mines de cobalt, diamant, cuivre en RDC et de pétrole au Congo-Brazzaville. </p>
+        <div class="cta-row"> 
+          <button class="btn btn-primary">Voir mes projets</button>
+          <button class="btn btn-ghost">Télécharger CV</button>
+        </div>
+        <div style="margin-top:18px;">
+          <h2 style="font-size:14px;margin-bottom:8px">Compétences</h2>
+          <div class="skills">
+            <span class="skill">HTML</span>
+            <span class="skill">CSS</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">Python</span>
+            <span class="skill">Django</span>
+            <span class="skill">PySide</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <img src="image/4S5A2771.JPG" alt="Photo de Meryl Brian" style="border-radius:20px;width:100%;max-width:480px;">
+      </div>
+    </section>
+
+    <!-- Contenu principal -->
+    <div class="main-content">
+      <!-- À propos -->
+      <section id="about" class="card sticky">
+        <h2>À propos</h2>
+        <p>Je m’appelle Meryl Brian Ngoyi, et mon parcours entrepreneurial est le fruit d’une passion indéfectible pour l’innovation et le développement de l’Afrique. Tout a commencé lorsque j’étais encore jeune, avec une simple idée : créer des solutions qui rapprochent les gens et transforment les économies locales.</p>
+        <p>Au fil des années, j’ai co-fondé Amazon Afrique, aujourd’hui le site de e-commerce le plus utilisé sur le continent, permettant à des millions de personnes d’accéder facilement à des produits essentiels et à des services variés. Mais je ne me suis pas arrêté là : j’ai également fondé l’association Les Enfants d’Afrique, pour soutenir l’éducation et l’épanouissement des jeunes dans les communautés défavorisées.</p>
+      </section>
+
+      <!-- Projets -->
+      <section id="projects" class="card sticky" style="height: 400px;">
+        <h2 style="margin-left: 20px;">Projets</h2>
+        <p style="margin-left: 20px;">Voici quelques exemples de mes réalisations :</p>
+        <ul style="margin-left: 20px;">
+         <li>Portfolio personnel</li>
+          <li>Application web avec Django</li>
+          <li>Interface graphique avec PySide</li>
+          <li>réalisations du site web  JPO-airline et application mobile  </li>
+          <li>site de rencontre  vinto</li>
+          <li> appliaction de gestion financière JPO-MONEY</li>
+        </ul>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="card sticky" style="height: 350px;">
+        <h2>Contact</h2>
+        <p>Vous pouvez me contacter pour toute collaboration :</p>
+        <p><i class="fas fa-envelope"></i> Email : <a href="mailto:merylngoyi@gmail.com" style="color: aliceblue;">merylngoyi@gmail.com</a></p>
+
+        <p><i class="fas fa-phone"></i> Numéro : +242064928038</p>
+        <p><i class="fas fa-map-marker-alt"></i> Localisation : Congo Brazzaville</p>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2025 Meryl Brian Ngoyi — Tous droits réservés.</p>
+    </footer>
+  </div>
+  <script>
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('nav');
+  const links = nav.querySelectorAll('a');
+
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+    nav.classList.toggle('show');
+  });
+
+  // Fermer automatiquement le menu quand on clique sur un lien
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.classList.remove('active');
+      nav.classList.remove('show');
+    });
+  });
+</script>
+
+</body>
+</html>
