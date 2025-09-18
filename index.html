@@ -3,32 +3,194 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../portofolio_brian/css/styles.css">
   <title>Portfolio Meryl Brian</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Variables couleurs et typographie */ 
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#dbe5f3;
+      --accent:#128fa5;
+      --glass: rgba(39, 38, 38, 0.658);
+      --radius:14px;
+      --max-width:1100px;
+      --ff-sans: 'Inter', system-ui, 'Segoe UI', 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;}
+    body{
+      font-family:var(--ff-sans);
+      background:linear-gradient(180deg,var(--bg) 0%, #2164af 100%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      display:flex;
+      justify-content:center;
+      overflow-x:hidden;
+    }
+    .wrap{max-width:var(--max-width);width:100%;padding: 0 16px;}
+    /* HEADER */
+    header{
+      position: fixed;top:0;left:0;right:0;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:30px;padding:12px 24px;
+      background: rgba(15,23,36,0.95);
+      backdrop-filter: blur(6px);
+      z-index:1000;
+    }
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:28px;}
+    .logo .mark{
+      width:74px;height:64px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),#7c3aed);
+      display:inline-grid;place-items:center;
+      color:#001c29;font-weight:800;
+      box-shadow:0 6px 18px rgba(1, 52, 61, 0.781), inset 0 -6px 18px rgba(255,255,255,0.03);
+    }
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-size:18px;font-weight:bold;}
+    nav a:hover{color:var(--accent)}
+    /* Hero */
+    .hero{
+      margin-top:100px;
+      background:linear-gradient(280deg, rgba(255,255,255,0.02), transparent);
+      padding:28px;border-radius:var(--radius);
+      display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;
+      box-shadow:0 8px 30px rgba(2,6,23,0.6);
+    }
+    .intro h1{font-size:clamp(20px, 2vw, 28px);}
+    .intro p{color:var(--muted);margin-top:10px;font-size:clamp(14px, 1.6vw, 16px);}
+    .cta-row{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#7c3aed);color:#052025}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    /* Sections */
+    section.card{
+      background:var(--card);
+      padding:18px;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.4);
+      width:100%;
+      max-width:100%;
+    }
+    h2{margin:0 0 12px 0;font-size:16px}
+    /* Skills */
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .skill{background:var(--glass);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
+    /* Grille principale */
+    .main-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+    #contact {grid-column: auto;margin:0 auto;}
+    /* FOOTER */
+    footer{
+      margin-top:32px;
+      text-align:center;
+      padding:16px;
+      background:#0b1220;
+      font-size:14px;
+      color:var(--muted);
+      width:100vw;
+      position:relative;
+      left:50%;
+      transform:translateX(-50%);
+      border-radius:0;
+    }
+    /* Sticky */
+    .sticky{position: sticky;top:30px;z-index:2;}
+    section[id]{scroll-margin-top:100px;}
+    /* Responsive tablette */
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr;text-align:center}
+      .hero img{max-width:100%}
+      nav a{margin-left:10px;font-size:16px;}
+    }
+    /* Responsive mobile */
+    @media (max-width: 600px){
+      header{flex-direction:column;gap:12px;text-align:center}
+      .logo{font-size:22px;}
+      nav a{margin:0 8px;font-size:14px;}
+      .intro h1{font-size:22px;}
+      .intro p{font-size:14px;}
+      .btn{font-size:14px;padding:8px 12px;}
+      section.card{padding:14px;}
+    }
+    /* Bouton menu hamburger */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 22px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1100;
+    }
+    .menu-toggle span {
+      display: block;
+      height: 3px;
+      background: var(--muted);
+      border-radius: 3px;
+      transition: 0.4s;
+    }
+    /* Animation croix */
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+    /* Menu mobile uniquement */
+    @media (max-width: 600px) {
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 420px;
+        background:#0b1220d3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        transition: right 0.4s ease;
+        z-index: 1000;
+      }
+      nav.show { right: 0; }
+      .menu-toggle { display: flex; }
+    }
+  </style>
 </head>
 <body>
   <div class="wrap">
     <!-- Header -->
     <header>
-  <div class="logo">
-    <div class="mark">MBN</div> Meryl
-  </div>
+      <div class="logo">
+        <div class="mark">MBN</div> Meryl
+      </div>
 
-  <!-- Bouton menu hamburger (visible uniquement en mobile) -->
-  <button class="menu-toggle" aria-label="Menu" style="margin-left: -30px;">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+      <!-- Bouton menu hamburger -->
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-  <nav>
-    <a href="#about">À propos</a>
-    <a href="#projects">Projets</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
+      <nav>
+        <a href="#about">À propos</a>
+        <a href="#projects">Projets</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
     <!-- Hero -->
     <section class="hero sticky" aria-label="Présentation">
@@ -52,7 +214,7 @@
         </div>
       </div>
       <div>
-        <img src="./images/WhatsApp Image 2025-09-18 à 16.47.34_954939ef.jpg" alt="Photo de Meryl Brian" style="border-radius:20px;width:100%;max-width:480px;">
+        <img src="image/4S5A2771.JPG" alt="Photo de Meryl Brian" style="border-radius:20px;width:100%;max-width:480px;">
       </div>
     </section>
 
@@ -70,12 +232,12 @@
         <h2 style="margin-left: 20px;">Projets</h2>
         <p style="margin-left: 20px;">Voici quelques exemples de mes réalisations :</p>
         <ul style="margin-left: 20px;">
-         <li>Portfolio personnel</li>
+          <li>Portfolio personnel</li>
           <li>Application web avec Django</li>
           <li>Interface graphique avec PySide</li>
-          <li>réalisations du site web  JPO-airline et application mobile  </li>
-          <li>site de rencontre  vinto</li>
-          <li> appliaction de gestion financière JPO-MONEY</li>
+          <li>Réalisation du site web JPO-Airline et application mobile</li>
+          <li>Site de rencontre Vinto</li>
+          <li>Application de gestion financière JPO-MONEY</li>
         </ul>
       </section>
 
@@ -84,7 +246,6 @@
         <h2>Contact</h2>
         <p>Vous pouvez me contacter pour toute collaboration :</p>
         <p><i class="fas fa-envelope"></i> Email : <a href="mailto:merylngoyi@gmail.com" style="color: aliceblue;">merylngoyi@gmail.com</a></p>
-
         <p><i class="fas fa-phone"></i> Numéro : +242064928038</p>
         <p><i class="fas fa-map-marker-alt"></i> Localisation : Congo Brazzaville</p>
       </section>
@@ -95,24 +256,24 @@
       <p>© 2025 Meryl Brian Ngoyi — Tous droits réservés.</p>
     </footer>
   </div>
+
   <script>
-  const toggle = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('nav');
-  const links = nav.querySelectorAll('a');
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    const links = nav.querySelectorAll('a');
 
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('active');
-    nav.classList.toggle('show');
-  });
-
-  // Fermer automatiquement le menu quand on clique sur un lien
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      toggle.classList.remove('active');
-      nav.classList.remove('show');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+      nav.classList.toggle('show');
     });
-  });
-</script>
 
+    // Fermer automatiquement le menu quand on clique sur un lien
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('active');
+        nav.classList.remove('show');
+      });
+    });
+  </script>
 </body>
 </html>
